@@ -1,0 +1,92 @@
+/* Valores por defecto */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: #282828;
+}
+
+ul {
+    list-style-type: none;
+}
+
+nav {
+    background-color: rgb(143, 175, 174);
+    padding: 2rem;
+}
+
+footer {
+    background-color: #282828;
+    margin-top: 20rem;
+}
+
+/* 
+    Flex por defecto:
+    -en eje x  / se cambia el eje con "flex-direction:column"
+    -es una fila
+    -propiedad nowrap (no envuelto) / se cambia con wrap
+
+
+    Dato importante: 
+        -justify-content es siempre sobre el eje principal
+        -align-items es siempre sobre el eje secundario
+
+    Todo depende si cambiamos los valores por defecto. Es decir si cambie la
+    posicion de flex por column, entonces si uso justify, me lo alinea pero verticalmente |
+    y su uso align me lo alinea horizontalmente --    
+*/
+
+/* Aplicando estilos en detalle */
+
+.navbar {
+    /* Por defecto alinea horizontal eje x */
+    display: flex;
+
+    /* Distintas alineaciones posibles */
+    justify-content:space-evenly;
+
+}
+
+.cardContainer {
+    display: flex;
+    justify-content:space-evenly;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.card {
+    width: 200px;
+    border-radius: 10px;
+    border: 2px solid rgb(224, 217, 217);
+
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card h3, p {
+    padding: 1rem;
+}
+
+.cardImg {
+    width: 200px;
+}
+
+.cardImg-tamano {
+    width: 100%;
+}
+
+.footer_navBar {
+    display: flex;
+    flex-direction: column;
+}
