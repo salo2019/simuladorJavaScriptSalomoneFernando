@@ -136,7 +136,7 @@ function main() {
     let buscar;
     let encontrados = [];
     menu();
-    opcion = prompt("Seleccione la opción deseada del menu (VER CONSOLA): ");
+    opcion = prompt("Seleccione la opción deseada del menu (ABRIR CONSOLA):\n\n (En caso que no se visualice el menu en la consola, ingresar '0' y luego refrescar la pagina con F5)");
     while (opcion != "0") {
         switch (opcion) {
             case "1":
