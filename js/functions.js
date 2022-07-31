@@ -1,3 +1,4 @@
+//Clase
 class Producto {
     constructor(opcion, nombre, precio, cantidad, informacion){
         this.opcion = opcion; //podemos hacer esto antes de la carga
@@ -79,7 +80,6 @@ productos.push(p1);
 productos.push(p2);
 productos.push(p3);
 
-
 //funciones
 function procesarPedido(producto, carrito) {
     if (producto.hayStock()) {
@@ -92,28 +92,28 @@ function procesarPedido(producto, carrito) {
 }
 
 function mostrarProductos() {
-    console.log("-------- Productos ---------")
+    console.log(">> Productos a la venta:")
     productos.forEach(p => { 
         console.log(p.getOpcion() + ": " + p.getNombre());
-    }) + console.log("\n----------------------------");
+    });
 }
 
 function otrasOpciones() {
-    console.log("\n4: Boton de arrepentimiento\n5: Buscar producto\n\n0: Finalizar compra y salir");
+    console.log("\n>> Otras opciones:")    
+    console.log("4: Botón de arrepentimiento\n5: Buscar producto\n0: Finalizar compra y salir");
 }
 
 function menu() {
-    //muestro opciones de menu. Ejemplo, muestro los nombres
-    console.log("************ MENU ************** ");
+    console.log("********************** MENU ************************** ");
     mostrarProductos();
     otrasOpciones();
-    console.log("******************************** ");
+    console.log("****************************************************** ");
     console.log("");
-    console.log("-------------------CARRITO---------------------");
+    console.log("CARRITO ACTUAL_____________________________");
     if (carrito.length > 0) {
         imprimirProductos(carrito);
     }
-    console.log("-----------------------------------------------");
+    console.log("___________________________________________\n\n");
 }
 
 function imprimirProductos(listaProductos) {
@@ -130,7 +130,7 @@ function buscarProducto(prod) {
     return productos.filter((p)=> (p.nombre.toLowerCase()).includes(prod))
 }
 
-//principal
+//Funcion principal
 function main() {
     let opcion;
     let buscar;
@@ -141,34 +141,33 @@ function main() {
         switch (opcion) {
             case "1":
                 procesarPedido(p1, carrito)
-                //carrito.push(p1);
                 break;
             case "2":
                 procesarPedido(p2, carrito)
-                //carrito.push(p2);
                 break;
             case "3":
                 procesarPedido(p3, carrito)
-                //carrito.push(p3);
                 break;
             case "4":
                 carrito = [];
                 reiniciarStock();
-                alert("Su carrito fue vaciado. Nada que cobrar!");
+                alert("\n\nSu carrito fue vaciado. Nada que cobrar!");
+                console.log("\n\n");
                 break;
             case "5":
                 buscar = prompt("Nombre de producto a buscar: ");
                 encontrados = buscarProducto(buscar.toLowerCase())
-                if (encontrados != []) {
+                if (encontrados != "") {
                     console.log("<<<<<< Productos encontrados >>>>>>> ")
                     imprimirProductos(encontrados);
-                    console.log("<<<<<<<<<<<<<<<<<>>>>>>>>>>>>\n\n")
+                    console.log("<<<<<<<--------------------->>>>>>>>\n\n");
                 } else {
-                    console.log("No existe el producto");
+                    alert("No existe el producto " + buscar);
+                    console.log("\n\n");
                 }
                 break;
             default:
-                alert("Opcion incorrecta. Vuelva a intentarlo");
+                alert("Opcion incorrecta. Vuelva a intentarlo\n");
                 break;
         }
         menu();
@@ -181,13 +180,11 @@ function main() {
 
     if (carrito.length > 0) {
         let total = carrito.reduce((suma, elemento) => suma + elemento.precio, 0);
-        console.log("___________________________________________");
-        console.log("El precio total del carrito es: $" + total);
-        console.log("___________________________________________");
+        console.log(">> El precio total de venta es: $" + total);
     } else {
         console.log("No tiene productos en el carrito")
     }
 }
 
-//Ejecucion
+//Ejecucion del programa
 main();
