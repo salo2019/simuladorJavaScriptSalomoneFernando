@@ -1,4 +1,3 @@
-//Clase
 class Producto {
     constructor(opcion, nombre, precio, cantidad, informacion){
         this.opcion = opcion; //podemos hacer esto antes de la carga
@@ -44,6 +43,7 @@ class Producto {
         this.cantidad = cantidad;
     }
 
+
 }
 
 //Creacion de productos
@@ -59,26 +59,49 @@ const p2 = new Producto (
     "2", 
     "Mini Pc Intel",
     85000,
-    4,
-    "MiniPc con procesador i7-1010 con 8gb de RAM y 259gb ssd"
+    5,
+    "MiniPc Intel con procesador i7-1010 con 8gb de RAM y 259gb ssd"
 )
 
 const p3 = new Producto ( 
     "3", 
     "Mini Pc Amd",
     80000,
-    4,
-    "MiniPc con procesador i7-1010 con 8gb de RAM y 259gb ssd"
+    3,
+    "MiniPc AMD con procesador Ryzen 5 3600 con 8gb de RAM y 259gb ssd"
 )
 
-//variables globales
-let productos = [];
-let carrito = [];
-
 //carga de productos en sistema
+let productos = [];
 productos.push(p1);
 productos.push(p2);
 productos.push(p3);
+
+//Muestra de productos
+let padreRaiz = document.getElementById("main__section");
+padreRaiz.className = "cardContainer";
+
+productos.forEach(p => {
+    let container = document.createElement("div");
+    container.className = "card";
+
+    //-------probando para la imagen---
+    //let imgContainer = document.createElement("div");
+    //imgContainer.className = "cardImg";
+    //let img = document.createElement("img");
+    //img.setAttribute("src", "../asset/notebook-removebg-preview.png");
+    //img.className = "cardImg-tamano";
+    //imgContainer.appendChild(img);
+    //container.appendChild(imgContainer)
+    //container.appendChild(img);
+    //--------- fin prueba---------
+
+    container.innerHTML =`<h3>${p.nombre}</h3> <p>Descripción: ${p.informacion}</p> <h4>Precio: $${p.precio}</h4> <span>Cantidad: ${p.cantidad}`;
+    padreRaiz.appendChild(container);
+})
+
+
+//---------------------------------------------------------
 
 //funciones
 function procesarPedido(producto, carrito) {
@@ -129,6 +152,8 @@ function reiniciarStock() {
 function buscarProducto(prod) {
     return productos.filter((p)=> (p.nombre.toLowerCase()).includes(prod))
 }
+
+let carrito = [];
 
 //Funcion principal
 function main() {

@@ -78,6 +78,10 @@ footer {
     padding: 1rem;
 }
 
+.card p {
+    text-align: center;
+}
+
 .cardImg {
     width: 200px;
 }
