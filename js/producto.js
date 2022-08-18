@@ -91,7 +91,7 @@ productos.forEach(p => {
     <p>Descripción: ${p.informacion}</p> 
     <h4>Precio: $${p.precio}</h4> 
     <span class="cantProducto">Cantidad: ${p.cantidad}</span>
-    <button class="agregar btn btn-primary">Comprar</button>
+    <button class="agregar btn btn-primary" id="btn${p.opcion}">Comprar</button>
     `;
     padreRaiz.appendChild(container);
 })

@@ -105,24 +105,3 @@ function main() {
 
 //ejecucion de programa principal
 main();
-
-
-
-
-
-
-
-
-//--------- Boton de terminar compra -------
-
-// const carritoTotal = document.getElementById("finalizarCompra");
-// let finalizar = document.getElementById("finalizar");
-
-// const dibujar = () => {
-//     carritoTotal.innerHTML = `
-//         <h4>${carro.getPrecioTotal()}</h4>
-//     ` 
-// } 
-
-// finalizar.addEventListener('click', dibujar);
-//----------- FIN CARRITO ------------------
