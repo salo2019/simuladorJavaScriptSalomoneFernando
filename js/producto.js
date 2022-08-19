@@ -28,7 +28,9 @@ class Producto {
     descontar(){
         if ((this.cantidad) > 0) {
             this.cantidad -= 1;
+            return true;
         }
+        return false;
     }
 
     hayStock(){
@@ -42,6 +44,12 @@ class Producto {
     setStock(cantidad){
         this.cantidad = cantidad;
     }
+
+    actualizarCantidad(cantidad){
+        this.cantidad -= cantidad;
+    }
+
+
 }
 
 //Creacion de productos
@@ -95,8 +103,6 @@ productos.forEach(p => {
     `;
     padreRaiz.appendChild(container);
 })
-
-
 
 //------------------------ FUNCIONES---------------------------------
 function procesarPedido(producto, listaCarrito) {
