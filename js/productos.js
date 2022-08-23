@@ -1,6 +1,6 @@
 class Producto {
     constructor(id, nombre, precio, cantidad, informacion,imagen){
-        this.id = id; //podemos hacer esto antes de la carga
+        this.id = id;
         this.nombre = nombre.toLowerCase();
         this.precio = parseFloat(precio);
         this.cantidad = parseInt(cantidad);

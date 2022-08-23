@@ -1,3 +1,5 @@
+//Globales
+
 const productos = [];
 const carrito = [];
 
@@ -7,7 +9,7 @@ const contenedorCarrito = document.getElementById("tablaBoby");
 const contenedorFooterCarrito = document.getElementById("footerTabla");
 
 
-//Creacion de productos
+//Funcion creacion de productos
 function cargarProductos() {
     const p1 = new Producto ( 
         "1", 
@@ -42,14 +44,7 @@ function cargarProductos() {
     productos.push(p3);    
 }
 
-function existe(producto) {
-    let encontrado = carrito.find(item => {
-        item.producto.id == producto.id;
-    });
-    return encontrado;
-}
-
-
+// Funcion Crear cada carta de producto
 function crearCardProducto(producto) {
     let corte = false;
 
@@ -89,7 +84,7 @@ function crearCardProducto(producto) {
     botonAgregar.onclick = () => {
         carrito.forEach(item => {
             if (item.producto.id == producto.id) {
-                item.cantidad += 1;
+                item.cantidad++;
                 corte = true;
             }
         });
@@ -106,6 +101,7 @@ function crearCardProducto(producto) {
     return carta;
 }
 
+
 function dibujarCatalogoDeProductos() {
     productos.forEach(p => {
         let productoAmostrar = crearCardProducto(p);
@@ -113,8 +109,8 @@ function dibujarCatalogoDeProductos() {
     });
 }
 
-function dibujarCarrito() {
 
+function dibujarCarrito() {
     let sumaTotalCarrito = 0;
 
     //reinicio el contenedor para que no se repitan los elementos
@@ -152,6 +148,7 @@ function dibujarCarrito() {
             dibujarCarrito();
         });
 
+        //logica del eliminar --> EN PROCESO....
         botonEliminar.onclick = () => {
             alert(`Elemento ${elemento.producto.nombre} para ser eliminado`);
         }
@@ -163,13 +160,12 @@ function dibujarCarrito() {
         } else {
             contenedorFooterCarrito.innerHTML = `<th scope="row" colspan="5">Carrito vacio</th>`
         }
-
     })
 }
 
 
+//Funcion Principal
 function main() {
-    //llamado a funciones
     if (localStorage.getItem("carrito")){
         let carritoLocalStorage = JSON.parse(localStorage.getItem("carrito"));
         carritoLocalStorage.forEach(item => {
@@ -181,160 +177,5 @@ function main() {
     dibujarCatalogoDeProductos();    
 }
 
-//principal
+//Invocacion principal
 main();
-
-
-//Muestra de productos en el index
-// let padreRaiz = document.getElementById("main__section");
-// padreRaiz.className = "cardContainer";
-  
-// productos.forEach(p => {
-//     let container = document.createElement("div");
-//     container.className = "card";
-//     container.innerHTML =`
-//     <div class="cardImg"><img class="cardImg-tamano" src=${p.imagen} alt="imagen"></div>
-//     <h3>${p.nombre}</h3> 
-//     <p>Descripción: ${p.informacion}</p> 
-//     <h4>Precio: $${p.precio}</h4> 
-//     <span class="cantProducto">Cantidad: ${p.cantidad}</span>
-//     <button class="agregar btn btn-primary" id="btn${p.opcion}">Comprar</button>
-//     `;
-//     padreRaiz.appendChild(container);
-// })
-
-
-//------------------------ FUNCIONES---------------------------------
-// function procesarPedido(producto, listaCarrito) {
-//     if (producto.hayStock()) {
-//         listaCarrito.push(producto);
-//         producto.descontar();
-//         alert(producto.nombre + " agregado");
-//     } else {
-//         alert(producto.nombre + " sin Stock");
-//     }
-// }
-
-// function imprimirProductos(listaProductos) {
-//     listaProductos.forEach((item) => {
-//         console.log("Nombre: " + item.nombre + " con un precio de: " + item.precio);        
-//     });
-// }
-
-// function reiniciarStock() {
-//     productos.map((p)=> p.setStock(4));
-// }
-
-// function buscarProducto(prod) {
-//     return productos.filter((p)=> (p.nombre.toLowerCase()).includes(prod))
-// }
-
-//operaciones necesarias al agregar un producto
-// function sumarProductoCarrito(producto) {
-//     carro.agregarProducto(producto);
-//     carro.incremetarCantidadItems();
-//     carro.actualizarPrecioTotal();
-// }
-
-//agregar un producto a carrito
-// function agregarProductoCarrito(producto) {
-
-//     if (producto.hayStock()){
-//         document.getElementById("tablaBoby").innerHTML += `
-//         <tr>
-//             <td>${producto.nombre}</td>
-//             <td>${producto.precio}</td>
-//         </tr>
-//         `;
-//         producto.descontar();
-//         sumarProductoCarrito(producto);
-//         localStorage.setItem("carrito",JSON.stringify(carro.getProductos()));
-
-//         carritoActual.innerHTML = `<span>Total actual: ${carro.getPrecioTotal()}</span>`;
-//     } else {
-//         alert("No hay stock de " + producto.getNombre());
-//     }
-// }
-
-// function actualizarCantidadProductos(productosCarrito) {
-//     for (let prodClase in productos) {
-//         for (let prodCarro in productosCarrito) {
-//             if (prodClase.opcion == prodCarro.opcion) {
-//                 prodClase.actualizarCantidad(prodCarro.cantidad);
-//             }
-//         }
-//     }    
-// }
-
-
-//variables globales
-// const carro = new Carrito();
-
-//para el total--
-// let carroCompras = document.getElementById("totalCarrito");
-// let carritoActual = document.createElement("div");
-
-// function main() {
-
-//     if (localStorage.getItem("carrito")){
-//         let productoCarrito;
-//         let cantidadCarrito;
-//         let lista = [];
-//         let productoOriginal;
-//         let productosLocalStorage = JSON.parse(localStorage.getItem("carrito"));
-
-//         productosLocalStorage.forEach((p) => {
-//             document.getElementById("tablaBoby").innerHTML += `
-//             <tr>
-//                 <td>${p.nombre}</td>
-//                 <td>${p.precio}</td>
-//             </tr>
-//             `;
-//             // lista.push(p);
-//             productoCarrito = p.opcion;
-//             cantidadCarrito = p.cantidad;
-//             productos.forEach((prod) => {
-//                 if (prod.opcion == productoCarrito) {
-//                     prod.actualizarCantidad(cantidadCarrito);                          
-//                 }
-
-//             });
-//         });
-
-//         productosLocalStorage.forEach((p) => {
-//             let producto = new Producto ( 
-//                 p.opcion, 
-//                 p.nombre,
-//                 p.precio,
-//                 p.cantidad,
-//                 p.informacion,
-//                 p.imagen    
-//             )         
-//             lista.push(producto);   
-//         })
-//         carro.setProductos(lista);
-//         carro.actualizarPrecioTotal();
-//         carro.setCantidad(lista.length);
-//     }
-
-//     console.log("Productos Carrito: " + carro.getProductos());
-//     console.log("Productos originales: " + productos);
-
-
-//     carritoActual.className = "mostrarCarrito";
-//     carritoActual.innerHTML = `<span>Total actual: ${carro.getPrecioTotal()}</span>`;
-//     carroCompras.appendChild(carritoActual);
-    
-//     //eventos / Escucha de cada boton de producto
-//     productos.forEach(p => {
-//         //evento individual por cada boton
-//         document.getElementById(`btn${p.opcion}`).addEventListener("click", function(){
-//                 agregarProductoCarrito(p);
-//         });
-//     });
-// }
-
-// //ejecucion de programa principal
-// main();
-
-
