@@ -45,7 +45,10 @@ function cargarProductos() {
 }
 
 function agregarProductoEnCarrito(producto) {
-    let productoCarrito = new Carrito(producto, 1);
+    let productoCarrito = {
+        ...producto,
+        cantidad: 1
+    }
     carrito.push(productoCarrito);
 }
 
@@ -86,8 +89,8 @@ function crearCardProducto(producto) {
 
     //preparacion de boton
     botonAgregar.onclick = () => {
-        let productoExistente = carrito.find(item => item.producto.id == producto.id);
-        
+        let productoExistente = carrito.find(item => item.id == producto.id);
+
         (productoExistente == undefined) ? agregarProductoEnCarrito(producto) : (productoExistente.cantidad++);
         
         //carga en localStorage
@@ -124,10 +127,11 @@ function dibujarCarrito() {
         botonEliminar.className = "btn btn-danger";
 
         renglonesCarrito.innerHTML += `
-            <td>${elemento.producto.id}</td>
-            <td>${elemento.producto.nombre}</td>
-            <td><input id="cantidad-producto-${elemento.producto.id}" type="number" value="${elemento.cantidad}" min="1" max="1000" step="1" style="width: 70px;"/></td>
-            <td>${elemento.producto.precio * elemento.cantidad}</td>
+            <td>${elemento.id}</td>
+            <td>${elemento.nombre}</td>
+            <td><input id="cantidad-producto-${elemento.id}" type="number" value="${elemento.cantidad}" min="1" max="1000" step="1" style="width: 70px;"/></td>
+            <td>$${elemento.precio}</td>
+            <td>$${elemento.precio * elemento.cantidad}</td>
             `;
 
         //agrego el eliminar    
@@ -138,7 +142,7 @@ function dibujarCarrito() {
         contenedorCarrito.appendChild(renglonesCarrito);
 
         //Para el cambio manual de cantidades
-        let cantidadElementos = document.getElementById(`cantidad-producto-${elemento.producto.id}`);
+        let cantidadElementos = document.getElementById(`cantidad-producto-${elemento.id}`);
         cantidadElementos.addEventListener("change", (e) => {
             let nuevaCantidad = e.target.value;
             elemento.cantidad = nuevaCantidad;
@@ -150,19 +154,11 @@ function dibujarCarrito() {
 
         //logica del eliminar --> EN PROCESO....
         botonEliminar.onclick = () => {
-            alert(`Elemento ${elemento.producto.nombre} para ser eliminado`);
+            alert(`Elemento ${elemento.nombre} para ser eliminado`);
         }
 
-        sumaTotalCarrito += elemento.producto.precio * elemento.cantidad;
+        sumaTotalCarrito += elemento.precio * elemento.cantidad;
 
-        //Con condicional normal
-        // if (carrito.length > 0){
-        //     contenedorFooterCarrito.innerHTML = `<th scope="row" colspan="5">Total = $${sumaTotalCarrito}</th>` 
-        // } else {
-        //     contenedorFooterCarrito.innerHTML = `<th scope="row" colspan="5">Carrito vacio</th>`
-        // }
-
-        //con funcion especial
         contenedorFooterCarrito.innerHTML = (carrito.length > 0) 
         ? 
             `<th scope="row" colspan="5">Total = $${sumaTotalCarrito}</th>` 
