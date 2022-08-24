@@ -17,7 +17,7 @@ function cargarProductos() {
         100000,
         4,
         "Notebook con procesador i5-1010 con 8gb de RAM y 500gb hdd",
-        "../asset/notebook-removebg-preview.png"    
+        "/asset/notebook-removebg-preview.png"    
     )
     
     const p2 = new Producto ( 
@@ -26,7 +26,7 @@ function cargarProductos() {
         85000,
         5,
         "MiniPc Intel con procesador i7-1010 con 8gb de RAM y 259gb ssd",
-        "../asset/miniPcIntel-removebg-preview.png"
+        "/asset/miniPcIntel-removebg-preview.png"
     )
     
     const p3 = new Producto ( 
@@ -35,7 +35,7 @@ function cargarProductos() {
         80000,
         3,
         "MiniPc AMD con procesador Ryzen 5 3600 con 8gb de RAM y 259gb ssd",
-        "../asset/miniPcAmd-removebg-preview.png"
+        "/asset/miniPcAmd-removebg-preview.png"
     )
     
     //Agrega los productos
@@ -44,9 +44,13 @@ function cargarProductos() {
     productos.push(p3);    
 }
 
+function agregarProductoEnCarrito(producto) {
+    let productoCarrito = new Carrito(producto, 1);
+    carrito.push(productoCarrito);
+}
+
 // Funcion Crear cada carta de producto
 function crearCardProducto(producto) {
-    let corte = false;
 
     //boton
     let botonAgregar = document.createElement("button");
@@ -82,17 +86,11 @@ function crearCardProducto(producto) {
 
     //preparacion de boton
     botonAgregar.onclick = () => {
-        carrito.forEach(item => {
-            if (item.producto.id == producto.id) {
-                item.cantidad++;
-                corte = true;
-            }
-        });
-        if (!corte) {
-            let productoCarrito = new Carrito(producto, 1);
-            carrito.push(productoCarrito);
-        }
-
+        let productoExistente = carrito.find(item => item.producto.id == producto.id);
+        
+        (productoExistente == undefined) ? agregarProductoEnCarrito(producto) : (productoExistente.cantidad++);
+        
+        //carga en localStorage
         localStorage.setItem("carrito", JSON.stringify(carrito));
         alert("El producto " + producto.nombre + " fue agregado");
         dibujarCarrito();
@@ -144,6 +142,8 @@ function dibujarCarrito() {
         cantidadElementos.addEventListener("change", (e) => {
             let nuevaCantidad = e.target.value;
             elemento.cantidad = nuevaCantidad;
+
+            //actualizo localStorage
             localStorage.setItem("carrito",JSON.stringify(carrito));
             dibujarCarrito();
         });
@@ -155,14 +155,21 @@ function dibujarCarrito() {
 
         sumaTotalCarrito += elemento.producto.precio * elemento.cantidad;
 
-        if (carrito.length > 0){
-            contenedorFooterCarrito.innerHTML = `<th scope="row" colspan="5">Total = $${sumaTotalCarrito}</th>` 
-        } else {
-            contenedorFooterCarrito.innerHTML = `<th scope="row" colspan="5">Carrito vacio</th>`
-        }
+        //Con condicional normal
+        // if (carrito.length > 0){
+        //     contenedorFooterCarrito.innerHTML = `<th scope="row" colspan="5">Total = $${sumaTotalCarrito}</th>` 
+        // } else {
+        //     contenedorFooterCarrito.innerHTML = `<th scope="row" colspan="5">Carrito vacio</th>`
+        // }
+
+        //con funcion especial
+        contenedorFooterCarrito.innerHTML = (carrito.length > 0) 
+        ? 
+            `<th scope="row" colspan="5">Total = $${sumaTotalCarrito}</th>` 
+        :
+            `<th scope="row" colspan="5">Carrito vacio</th>`
     })
 }
-
 
 //Funcion Principal
 function main() {
