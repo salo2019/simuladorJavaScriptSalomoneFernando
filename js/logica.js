@@ -95,7 +95,13 @@ function crearCardProducto(producto) {
         
         //carga en localStorage
         localStorage.setItem("carrito", JSON.stringify(carrito));
-        alert("El producto " + producto.nombre + " fue agregado");
+        //alert("El producto " + producto.nombre + " fue agregado");
+        Swal.fire(
+            "Producto "+ producto.nombre,
+            "Agregado exitosamente",
+            "success"
+        ); 
+        
         dibujarCarrito();
     }
 
@@ -154,7 +160,24 @@ function dibujarCarrito() {
 
         //logica del eliminar --> EN PROCESO....
         botonEliminar.onclick = () => {
-            alert(`Elemento ${elemento.nombre} para ser eliminado`);
+            //alert(`Elemento ${elemento.nombre} para ser eliminado`);
+            Swal.fire({
+                title: 'Producto ' + elemento.nombre,
+                text: "Esta seguro que desea eliminarlo del carrito?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, borrarlo!'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  Swal.fire(
+                    'Borrado',
+                    'El producto fue borrado exitosamente',
+                    'success'
+                  )
+                }
+              })
         }
 
         sumaTotalCarrito += elemento.precio * elemento.cantidad;
