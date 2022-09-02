@@ -1,0 +1,28 @@
+[
+{
+    "id":1,
+    "nombre":"Notebook Intel",
+    "precio":100000,
+    "cantidad":4,
+    "informacion":"Notebook con procesador i5-1010 con 8gb de RAM y 500gb hdd",
+    "imagen":"asset/notebook-removebg-preview.png"
+},
+{
+    "id":2,
+    "nombre":"Mini Pc Intel",
+    "precio":85000,
+    "cantidad":5,
+    "informacion":"MiniPc Intel con procesador i7-1010 con 8gb de RAM y 259gb ssd",
+    "imagen":"asset/miniPcIntel-removebg-preview.png"
+},
+{
+    "id":3,
+    "nombre":"Mini Pc Amd",
+    "precio":80000,
+    "cantidad":3,
+    "informacion":"MiniPc AMD con procesador Ryzen 5 3600 con 8gb de RAM y 259gb ssd",
+    "imagen":"asset/miniPcAmd-removebg-preview.png"
+}
+]
+
+

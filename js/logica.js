@@ -1,7 +1,7 @@
 //Globales
-
-const productos = [];
+let productos = [];
 const carrito = [];
+
 
 //captando desde html
 const contenedorProductos = document.getElementById("contenedorProductos");
@@ -9,41 +9,7 @@ const contenedorCarrito = document.getElementById("tablaBoby");
 const contenedorFooterCarrito = document.getElementById("footerTabla");
 
 
-//Funcion creacion de productos
-function cargarProductos() {
-    const p1 = new Producto ( 
-        "1", 
-        "Notebook Intel",
-        100000,
-        4,
-        "Notebook con procesador i5-1010 con 8gb de RAM y 500gb hdd",
-        "/asset/notebook-removebg-preview.png"    
-    )
-    
-    const p2 = new Producto ( 
-        "2", 
-        "Mini Pc Intel",
-        85000,
-        5,
-        "MiniPc Intel con procesador i7-1010 con 8gb de RAM y 259gb ssd",
-        "/asset/miniPcIntel-removebg-preview.png"
-    )
-    
-    const p3 = new Producto ( 
-        "3", 
-        "Mini Pc Amd",
-        80000,
-        3,
-        "MiniPc AMD con procesador Ryzen 5 3600 con 8gb de RAM y 259gb ssd",
-        "/asset/miniPcAmd-removebg-preview.png"
-    )
-    
-    //Agrega los productos
-    productos.push(p1);
-    productos.push(p2);
-    productos.push(p3);    
-}
-
+//funciones
 function agregarProductoEnCarrito(producto) {
     let productoCarrito = {
         ...producto,
@@ -104,17 +70,16 @@ function crearCardProducto(producto) {
         
         dibujarCarrito();
     }
-
     return carta;
 }
 
 
 function dibujarCatalogoDeProductos() {
-    productos.forEach(p => {
-        let productoAmostrar = crearCardProducto(p);
+    for (const prod of productos) {
+        let productoAmostrar = crearCardProducto(prod);
         contenedorProductos.append(productoAmostrar);
-    });
-}
+    }
+ }
 
 
 function dibujarCarrito() {
@@ -190,6 +155,16 @@ function dibujarCarrito() {
     })
 }
 
+
+//funcion para carga de productos a traves de json
+async function obtenerProductosDesdeJson() {
+    const urlJsonProductos = "../productos.json";
+    const respuesta = await fetch(urlJsonProductos);
+    const datos = await respuesta.json();
+    productos = datos;
+    dibujarCatalogoDeProductos();
+}
+
 //Funcion Principal
 function main() {
     if (localStorage.getItem("carrito")){
@@ -199,9 +174,8 @@ function main() {
         });
         dibujarCarrito();
     }
-    cargarProductos()
-    dibujarCatalogoDeProductos();    
+    obtenerProductosDesdeJson();
 }
 
-//Invocacion principal
+//INVOCACION AL PROGRAMA PRINCIPAL
 main();
