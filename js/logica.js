@@ -4,9 +4,9 @@ const carrito = [];
 
 
 //captando desde html
-const contenedorProductos = document.getElementById("contenedorProductos");
-const contenedorCarrito = document.getElementById("tablaBoby");
-const contenedorFooterCarrito = document.getElementById("footerTabla");
+let contenedorProductos;
+let contenedorCarrito;
+let contenedorFooterCarrito;
 
 
 //funciones
@@ -75,11 +75,17 @@ function crearCardProducto(producto) {
 
 
 function dibujarCatalogoDeProductos() {
+
+    //captando desde html
+    contenedorProductos = document.getElementById("contenedorProductos");
+    contenedorCarrito = document.getElementById("tablaBoby");
+    contenedorFooterCarrito = document.getElementById("footerTabla");
+
     for (const prod of productos) {
         let productoAmostrar = crearCardProducto(prod);
         contenedorProductos.append(productoAmostrar);
     }
- }
+}
 
 
 function dibujarCarrito() {
@@ -158,11 +164,12 @@ function dibujarCarrito() {
 
 //funcion para carga de productos a traves de json
 async function obtenerProductosDesdeJson() {
-    const urlJsonProductos = "../productos.json";
+    const urlJsonProductos = "productos.json";
     const respuesta = await fetch(urlJsonProductos);
     const datos = await respuesta.json();
     productos = datos;
     dibujarCatalogoDeProductos();
+    dibujarCarrito();
 }
 
 //Funcion Principal
@@ -172,7 +179,6 @@ function main() {
         carritoLocalStorage.forEach(item => {
             carrito.push(item);
         });
-        dibujarCarrito();
     }
     obtenerProductosDesdeJson();
 }
