@@ -91,6 +91,30 @@ function dibujarCatalogoDeProductos() {
 function dibujarCarrito() {
     let sumaTotalCarrito = 0;
 
+    //desactivando o activando boton de finalizar compra
+    finalizarCompra = document.getElementById("finalizar");
+    (carrito.length == 0) ? finalizarCompra.className = "btn btn-success disabled" : finalizarCompra.className = "btn btn-success";
+
+    finalizarCompra.onclick = () => {
+        Swal.fire({
+            title: 'Estas seguro que quieres terminar la compra?',
+            text: "El precio final es de $" + sumaTotalCarrito,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, quiero pagar!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire(
+                'Redireccionando...',
+                'Pasaras a la siguiente seccion para terminar la compra',
+                'success'
+              )
+            }
+          })
+    }
+
     //reinicio el contenedor para que no se repitan los elementos
     contenedorCarrito.innerHTML = "";
 
@@ -129,9 +153,8 @@ function dibujarCarrito() {
             dibujarCarrito();
         });
 
-        //logica del eliminar --> EN PROCESO....
+        //logica del eliminar
         botonEliminar.onclick = () => {
-            //alert(`Elemento ${elemento.nombre} para ser eliminado`);
             Swal.fire({
                 title: 'Producto ' + elemento.nombre,
                 text: "Esta seguro que desea eliminarlo del carrito?",
@@ -142,6 +165,15 @@ function dibujarCarrito() {
                 confirmButtonText: 'Si, borrarlo!'
               }).then((result) => {
                 if (result.isConfirmed) {
+                    let indice = carrito.findIndex(prod => prod.id == elemento.id);
+                    sumaTotalCarrito =- elemento.precio * elemento.cantidad;
+                    carrito.splice(indice,1);
+                    dibujarCarrito();
+                    //actualizo localstorage
+                    localStorage.setItem("carrito",JSON.stringify(carrito));
+                    if (carrito.length == 0){
+                        contenedorFooterCarrito.innerHTML = `<th scope="row" colspan="5">Carrito vacio</th>`; 
+                    }
                   Swal.fire(
                     'Borrado',
                     'El producto fue borrado exitosamente',
