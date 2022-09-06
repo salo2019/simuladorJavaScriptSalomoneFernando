@@ -16,16 +16,16 @@
                 <li><a href="">Home</a></li>
                 <li><a href="">Productos</a></li>
                 <li><a href="">Contacto</a></li>
-                <li><a href="">Carrito</a></li>
+                <li><a href="">Mis compras</a></li>
             </ul>
         </nav>
     </header>
     <main>
         <!-- Catalogo de productos -->
         <section id="contenedorProductos" class="cardContainer">
-        
+    
         </section>
-
+    
         <!-- CARRITO -->
         <div>
             <h4>Tu carrito</h4>
@@ -50,6 +50,53 @@
                 </tfoot>
             </table>
             <button id="finalizar" class="btn btn-success">Finalizar compra</button>
+    
+            <!-- modal -->
+            <!-- Button trigger modal -->
+            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                Launch demo modal
+            </button> -->
+    
+            <!-- Modal -->
+            <!-- <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">Cantidad</th>
+                                            <th scope="col">Precio unidad</th>
+                                            <th scope="col">Precio total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="items"></tbody>
+                                    <tfoot>
+                                        <tr id="footer">
+                                            <th scope="row" colspan="5">Sin productos en carrito</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <div class="row" id="cards"></div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-primary">Confirmar compra</button>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
         </div>
     </main>
     <footer>
@@ -69,6 +116,7 @@
     <script src="https://cdn.jsdelivr.net/npm/luxon@3.0.1/build/global/luxon.min.js"></script>
     
     <!-- Archivos propios -->
-    <script src="./js/logica.js"></script>    
+    <script src="./js/logica.js"></script>   
+    <script src="./js/compras.js"></script> 
 </body>
 </html>

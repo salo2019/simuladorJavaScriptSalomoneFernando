@@ -1,6 +1,7 @@
 //Globales
 let productos = [];
-const carrito = [];
+let carrito = [];
+let comprasFinalizadas = [];
 
 
 //captando desde html
@@ -107,10 +108,17 @@ function dibujarCarrito() {
           }).then((result) => {
             if (result.isConfirmed) {
               Swal.fire(
-                'Redireccionando...',
-                'Pasaras a la siguiente seccion para terminar la compra',
+                'Compra realizada con exito',
+                'Puedes visualizar tus compras desde la opción "Mis compras"',
                 'success'
               )
+              const compra = new Compra(carrito,"una fecha");
+              comprasFinalizadas.push(compra);
+              localStorage.setItem("compras",JSON.stringify(comprasFinalizadas));
+              carrito = [];
+              contenedorFooterCarrito.innerHTML = `<th scope="row" colspan="5">Carrito vacio</th>`;
+              localStorage.removeItem("carrito");
+              dibujarCarrito();
             }
           })
     }
@@ -206,11 +214,19 @@ async function obtenerProductosDesdeJson() {
 
 //Funcion Principal
 function main() {
+    
     if (localStorage.getItem("carrito")){
         let carritoLocalStorage = JSON.parse(localStorage.getItem("carrito"));
         carritoLocalStorage.forEach(item => {
             carrito.push(item);
         });
+    }
+    if (localStorage.getItem("compras")){
+        let comprasLocalStorageFinalizadas = JSON.parse(localStorage.getItem("compras"));
+        comprasLocalStorageFinalizadas.forEach(item => {
+            //hacer algo para mostrar luego en compras
+            console.log("Compras local storage" + item)
+        })
     }
     obtenerProductosDesdeJson();
 }
