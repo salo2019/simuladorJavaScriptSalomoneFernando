@@ -106,20 +106,22 @@ function dibujarCarrito() {
             cancelButtonColor: '#d33',
             confirmButtonText: 'Si, quiero pagar!'
           }).then((result) => {
-            if (result.isConfirmed) {
-              Swal.fire(
-                'Compra realizada con exito',
-                'Puedes visualizar tus compras desde la opción "Mis compras"',
-                'success'
-              )
-              const compra = new Compra(carrito,"una fecha");
-              comprasFinalizadas.push(compra);
-              localStorage.setItem("compras",JSON.stringify(comprasFinalizadas));
-              carrito = [];
-              contenedorFooterCarrito.innerHTML = `<th scope="row" colspan="5">Carrito vacio</th>`;
-              localStorage.removeItem("carrito");
-              dibujarCarrito();
-            }
+              if (result.isConfirmed) {
+                  Swal.fire({
+                      title: 'Compra realizada con exito',
+                      //'Puedes visualizar tus compras desde la opción "Mis compras"',
+                      icon: 'success',
+                      html: '<a href="./vistas/compras.html">Ir a mis compras</a> '
+                  })
+                  let compra = new Compra(carrito, sumaTotalCarrito);
+                  //console.log("Fecha " + compra.fecha)
+                  comprasFinalizadas.push(compra);
+                  localStorage.setItem("compras", JSON.stringify(comprasFinalizadas));
+                  carrito = [];
+                  contenedorFooterCarrito.innerHTML = `<th scope="row" colspan="5">Carrito vacio</th>`;
+                  localStorage.removeItem("carrito");
+                  dibujarCarrito();
+              }
           })
     }
 
@@ -214,7 +216,6 @@ async function obtenerProductosDesdeJson() {
 
 //Funcion Principal
 function main() {
-    
     if (localStorage.getItem("carrito")){
         let carritoLocalStorage = JSON.parse(localStorage.getItem("carrito"));
         carritoLocalStorage.forEach(item => {
@@ -224,9 +225,10 @@ function main() {
     if (localStorage.getItem("compras")){
         let comprasLocalStorageFinalizadas = JSON.parse(localStorage.getItem("compras"));
         comprasLocalStorageFinalizadas.forEach(item => {
-            //hacer algo para mostrar luego en compras
-            console.log("Compras local storage" + item)
+            comprasFinalizadas.push(item);
         })
+    } else {
+        comprasFinalizadas = [];
     }
     obtenerProductosDesdeJson();
 }
