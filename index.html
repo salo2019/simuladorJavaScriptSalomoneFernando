@@ -19,13 +19,26 @@
         </nav>
     </header>
     <main>
+        <div class="row">
+            <div class="col-md-2">
+                <select id="miSeleccion" class="form-select" aria-label="Default select example">
+                    <option value="pordefecto">Ordenar por..</option>
+                    <option value="menor">Por menor precio</option>
+                    <option value="mayor">Por mayor precio</option>
+                    <option value="alfabetico">Por orden alfabético</option>
+                    <option value="sinFiltro">Sacar filtro</option>
+                  </select>
+                <p></p>
+            </div>
+        </div>
+
         <!-- Catalogo de productos -->
         <section id="contenedorProductos" class="cardContainer">
     
         </section>
     
         <!-- CARRITO -->
-        <div>
+        <div class="mt-4">
             <h4>Tu carrito</h4>
             <table class="table">
                 <thead>

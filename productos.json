@@ -18,9 +18,25 @@
     {
         "id": 3,
         "nombre": "Mini Pc Amd",
-        "precio": 80000,
+        "precio": 89000,
         "cantidad": 3,
         "informacion": "MiniPc AMD con procesador Ryzen 5 3600 con 8gb de RAM y 259gb ssd",
         "imagen": "asset/miniPcAmd-removebg-preview.png"
+    },
+    {
+        "id": 4,
+        "nombre": "Monitor BENQ",
+        "precio": 23500,
+        "cantidad": 5,
+        "informacion": "Monitor HD con salida HDMI y audio integrado",
+        "imagen": "asset/monitor-removebg-preview.png"
+    },
+    {
+        "id": 6,
+        "nombre": "Disco Solido M.2",
+        "precio": 16700,
+        "cantidad": 11,
+        "informacion": "Disco Solido Western Digital con capacidad de 480GB",
+        "imagen": "asset/werternDigital-removebg-preview.png"
     }
 ]

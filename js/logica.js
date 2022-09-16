@@ -203,13 +203,28 @@ function dibujarCarrito() {
     })
 }
 
+//funcion ordenar para los filtros
+function ordenar() {
+    let miSeleccion = document.getElementById("miSeleccion").value;
+    if (miSeleccion =="menor") {
+        productos.sort(function (a, b) {
+            return a.precio - b.precio;
+        });
+    } else if (miSeleccion =="mayor") {
+        productos.sort(function (a, b){
+            return b.precio - a.precio;
+        });    
+    } else if (miSeleccion =="alfabetico") {
+        productos.sort(function (a, b){
+            return a.nombre.localeCompare(b.nombre);
+        });
+    } else if (miSeleccion == "sinFiltro") {
+        obtenerProductosDesdeJson();
+        contenedorProductos.innerHTML="";
+        return productos;
+    }
 
-//funcion para carga de productos a traves de json
-async function obtenerProductosDesdeJson() {
-    const urlJsonProductos = "productos.json";
-    const respuesta = await fetch(urlJsonProductos);
-    const datos = await respuesta.json();
-    productos = datos;
+    contenedorProductos.innerHTML="";
     dibujarCatalogoDeProductos();
     dibujarCarrito();
 }
@@ -226,12 +241,33 @@ function main() {
         let comprasLocalStorageFinalizadas = JSON.parse(localStorage.getItem("compras"));
         comprasLocalStorageFinalizadas.forEach(item => {
             comprasFinalizadas.push(item);
-        })
+        });
     } else {
         comprasFinalizadas = [];
     }
+
+    //por defecto
     obtenerProductosDesdeJson();
+    document.getElementById("miSeleccion").setAttribute("option", "pordefecto");
+   
+    //onchange para el caso de que cambie la opcion del "select"
+    document.getElementById("miSeleccion").onchange=()=>ordenar();
+
 }
 
+//funcion para carga de productos a traves de json
+async function obtenerProductosDesdeJson() {
+    const urlJsonProductos = "productos.json";
+    const respuesta = await fetch(urlJsonProductos);
+    const datos = await respuesta.json();
+    productos = datos;
+    dibujarCatalogoDeProductos();
+    dibujarCarrito();
+}
+
+
 //INVOCACION AL PROGRAMA PRINCIPAL
-main();
+//Cuando el HTML está cargado
+window.onload=()=>{
+    main();
+};
