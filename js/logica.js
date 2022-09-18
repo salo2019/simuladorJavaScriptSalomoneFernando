@@ -134,14 +134,13 @@ function dibujarCarrito() {
         let botonEliminar = document.createElement("button");
         
         //para eliminar de carrito
-        botonEliminar.innerText = "Eliminar";
+        botonEliminar.innerHTML = `<i class="fa-sharp fa-solid fa-trash"></i>`;
         botonEliminar.className = "btn btn-danger";
 
         renglonesCarrito.innerHTML += `
-            <td>${elemento.id}</td>
+            <th scope="row">${elemento.id}</th>
             <td>${elemento.nombre}</td>
             <td><input id="cantidad-producto-${elemento.id}" type="number" value="${elemento.cantidad}" min="1" max="1000" step="1" style="width: 70px;"/></td>
-            <td>$${elemento.precio}</td>
             <td>$${elemento.precio * elemento.cantidad}</td>
             `;
 

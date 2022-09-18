@@ -11,12 +11,20 @@
 </head>
 <body>
     <header>
-        <nav>
-            <ul class="navbar">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../vistas/compras.html">Mis compras</a></li>
-            </ul>
-        </nav>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                  <a class="nav-link" aria-current="page" href="../index.html">Home</a>
+                  <a class="nav-link active" href="../vistas/compras.html">Mis compras</a>
+                </div>
+              </div>
+            </div>
+          </nav>
     </header>
 
     <main>
@@ -27,16 +35,23 @@
 
             </div>
 
+            <div class="container d-grid gap-2 col-6 mx-auto mt-4">
+                <button class="seguirComprando" id="seguirComprando">Seguir comprando</button>
+            </div>
         </div>
     </main>
 
     <footer>
-        <nav>
-            <ul class="footer_navBar">
-                <li><a href="">Bases y condiciones</a></li>
-                <li><a href="">Botón de arrepentimiento</a></li>
-            </ul>
-        </nav>
+        <nav class="">
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="#">Bases y condiciones</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Quienes somos</a>
+                </li>
+              </ul>
+          </nav>
     </footer>
 
     <!-- JavaScript Bundle with Popper -->

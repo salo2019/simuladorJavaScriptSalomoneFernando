@@ -18,10 +18,10 @@ ul {
     list-style-type: none;
 }
 
-nav {
+/* nav {
     background-color: rgb(143, 175, 174);
     padding: 2rem;
-}
+} */
 
 footer {
     background-color: #282828;
@@ -46,14 +46,14 @@ footer {
 
 /* Aplicando estilos en detalle */
 
-.navbar {
+/* .navbar { */
     /* Por defecto alinea horizontal eje x */
-    display: flex;
+    /* display: flex; */
 
     /* Distintas alineaciones posibles */
-    justify-content:space-evenly;
+    /* justify-content:space-evenly; */
 
-}
+/* } */
 
 .cardContainer {
     display: flex;
@@ -93,4 +93,44 @@ footer {
 .footer_navBar {
     display: flex;
     flex-direction: column;
+}
+
+/* Botton de ir a mis compras en compras.html */
+.seguirComprando {
+    padding: 5px 10px;
+    border: unset;
+    border-radius: 15px;
+    color: #212121;
+    z-index: 1;
+    background: #e8e8e8;
+    position: relative;
+    font-weight: 1000;
+    font-size: 17px;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+    transition: all 250ms;
+    overflow: hidden;
+}
+
+.seguirComprando::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    border-radius: 15px;
+    background-color: #212121;
+    z-index: -1;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+    transition: all 250ms
+}
+
+.seguirComprando:hover {
+    color: #e8e8e8;
+}
+
+.seguirComprando:hover::before {
+    width: 100%;
 }

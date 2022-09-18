@@ -44,6 +44,19 @@ function main() {
         let comprasFinalizadas = JSON.parse(localStorage.getItem("compras"));
         mostrarCompras(comprasFinalizadas);    
     }
+    let botonVolverAcompras = document.getElementById("seguirComprando");
+    
+    botonVolverAcompras.onclick = () => {
+        Swal.fire({
+            type: "success",
+            icon: 'success',
+            title: "Redirigiendo...",
+            showConfirmButton: false,
+            timer: 1200
+        }).then(function() {
+                window.location = "../index.html";
+        });
+    }
 }
 
 main();

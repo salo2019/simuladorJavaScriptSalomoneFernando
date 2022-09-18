@@ -11,15 +11,26 @@
 </head>
 <body>
     <header>
-        <nav>
-            <ul class="navbar">
-                <li><a href="./index.html">Home</a></li>
-                <li><a href="./vistas/compras.html">Mis compras</a></li>
-            </ul>
-        </nav>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                  <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+                  <a class="nav-link" href="./vistas/compras.html">Mis compras</a>
+                </div>
+                <!-- <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Nombre de producto" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                </form> -->
+              </div>
+            </div>
+          </nav>
     </header>
     <main>
-        <div class="row">
+        <div class="row mx-auto mt-4">
             <div class="col-md-2">
                 <select id="miSeleccion" class="form-select" aria-label="Default select example">
                     <option value="pordefecto">Ordenar por..</option>
@@ -38,38 +49,37 @@
         </section>
     
         <!-- CARRITO -->
-        <div class="mt-4">
-            <h4>Tu carrito</h4>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Cantidad</th>
-                        <th scope="col">Precio unidad</th>
-                        <th scope="col">Precio total</th>
-                        <th scope="col">Accion</th>
-                    </tr>
-                </thead>
-                <tbody id="tablaBoby">
-                    <!-- Aqui se muestra los productos del carrito  -->
-                </tbody>
-                <tfoot>
-                    <tr id="footerTabla">
-                        <th scope="row" colspan="5">Carrito vacío</th>
-                    </tr>
-                </tfoot>
-            </table>
-            <button id="finalizar" class="btn btn-success">Finalizar compra</button>
-        </div>
+        <table class="table mt-4">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Total</th>
+            </tr>
+            </thead>
+            <tbody id="tablaBoby">
+
+            </tbody>
+            <tfoot>
+                <tr id="footerTabla">
+                    <th scope="row" colspan="5">Carrito vacío</th>
+                </tr>
+            </tfoot>
+          </table>
+          <button id="finalizar" class="btn btn-success">Finalizar compra</button>
     </main>
     <footer>
-        <nav>
-            <ul class="footer_navBar">
-                <li><a href="">Bases y condiciones</a></li>
-                <li><a href="">Botón de arrepentimiento</a></li>
-            </ul>
-        </nav>
+        <nav class="bg-dark">
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="#">Bases y condiciones</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Quienes somos</a>
+                </li>
+              </ul>
+          </nav>
     </footer>
 
     <!-- JavaScript Bundle with Popper -->
@@ -78,7 +88,8 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Libreria Luxon -->
     <script src="https://cdn.jsdelivr.net/npm/luxon@3.0.1/build/global/luxon.min.js"></script>
-    
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/09778238a1.js" crossorigin="anonymous"></script>
     <!-- Archivos propios -->
     <script src="./js/logica.js"></script>   
     <script src="./js/compra.js"></script> 
